@@ -1,0 +1,60 @@
+html{
+  background: black;
+  text: white;
+}
+body {
+  padding: 25px;
+  background-color: black;
+  color: black;
+  font-size: 25px;
+}
+textarea {
+  background-color: #000000;
+  width: 100%;
+  height: 200px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid#ccc;
+  color: #ffff;
+  box-shadow: 0.0 5px #0099ff;
+}
+select {
+  background-color: #000000;
+  color: #fff;
+}
+img {
+  float: right; margin-right: 15px;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center; 
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #00c7ff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 2px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+.light-mode {
+  background-color: white;
+  color: black;
+}
