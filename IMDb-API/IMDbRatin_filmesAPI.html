@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+       <style>
+              :root {
+                     --orange: orange;
+                     --gray2: gray;
+                     --gray3: gray;
+                     --gray4: gray;
+                     --gray5: gray;
+              }
+
+              .checked {
+                     color: var(--orange);
+              }
+
+              .unchecked2 {
+                     color: var(--gray2);
+              }
+
+              .unchecked3 {
+                     color: var(--gray3);
+              }
+
+              .unchecked4 {
+                     color: var(--gray4);
+              }
+
+              .unchecked5 {
+                     color: var(--gray5);
+              }
+
+              body {
+                     background: black;
+              }
+
+              .center {
+                     padding: 10px 0;
+                     border: 0px solid green;
+                     text-align: center;
+              }
+
+              table {
+                     border: 1px solid #E0E0E0;
+                     border-radius: 30px;
+              }
+
+              th,
+              td {
+                     text-align: center;
+                     padding-top: 1px;
+                     padding-bottom: 1px;
+                     padding-left: 5px;
+                     padding-right: 5px;
+              }
+
+              table.center {
+                     margin-left: auto;
+                     margin-right: auto;
+              }
+
+              table.center {
+                     margin-left: auto;
+                     margin-right: auto;
+              }
+
+              .nulo {
+                     visibility: hidden;
+              }
+
+              span {
+                     color: white;
+                     font-size: 16px;
+                     text-align: center;
+                     padding: 10px 0;
+                     font-family: Arial, Helvetica, sans-serif;
+                     font-weight: lighter;
+              }
+
+              p {
+                     color: white;
+                     font-size: 18px;
+                     font-weight: bold;
+                     font-family: Arial, Helvetica, sans-serif;
+              }
+              
+
+              .light {
+                     font-weight: 200;
+              }
+
+              .visivel {
+                     color: red;
+                     font-size: 18px;
+                     font-family: Arial, Helvetica, sans-serif;
+              }
+
+              .rating {
+                     color: orange;
+                     text-align: center;
+                     font-weight: bold;
+                     font-size: 36px;
+                     font-family: Arial, Helvetica, sans-serif;
+                     border: hidden;
+              }
+
+              .transp {
+                     border: hidden;
+              }
+       </style>
+
+</head>
+
+<body id="body" class="body">
+       <span id="imdbID" class="nulo"></span>
+       <table>
+              <tr>
+                     <td>
+                            <table class="transp">
+                                   <tr>
+                                          <td class="transp">
+                                                 <p>Classificação</p>
+                                          </td>
+                                          <td><img alt="IMDb" src="https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png">
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td class="rating" id="imdbRating"></td>
+                                          <td class="transp">
+                                                 <span id="s1" class="fa fa-star checked"></span>
+                                                 <span id="s2" class="fa fa-star unchecked2"></span>
+                                                 <span id="s3" class="fa fa-star unchecked3"></span>
+                                                 <span id="s4" class="fa fa-star unchecked4"></span>
+                                                 <span id="s5" class="fa fa-star unchecked5"></span>
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td><span></span></td>
+                                          <td style="text-align: center; padding-top: 10px;"><span id="imdbVotes"></span><span> votos</span></td>
+                                   </tr>
+                            </table>
+                     </td>
+                     <td style="text-align: left; width:80px;"><img alt="capa" width="100%" src="" id="minhaImagem"></td>
+              </tr>
+       </table>
+
+
+       <!-- Código IMDb -->
+       <script>
+              var vars = [], hash;
+              var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+              for (var i = 0; i < hashes.length; i++) {
+                     hash = hashes[i].split('=');
+                     vars.push(hash[0]);
+                     vars[hash[0]] = hash[1];
+              }
+
+              //alert(hash[1]);
+              var codigo = hash[1];
+              //const codigo = "tt10872600";
+
+              const settings = {
+                     "async": true,
+                     "crossDomain": true,
+                     "url": "https://www.omdbapi.com/?i=" + codigo + "&plot=full&apikey=SUA_API_KEY",
+                     "method": "GET"
+              };
+
+              $.ajax(settings).done(function (response) {
+                     console.dir(response);
+                     console.dir(response.imdbID)
+                     console.dir(response.imdbRating)
+                     console.dir(response.imdbVotes)
+                     console.dir(response.Poster)
+
+                     var imdbID = response.imdbID;
+                     var imdbRating = response.imdbRating;
+                     var imdbVotes = response.imdbVotes;
+                     var Poster = response.Poster;
+
+                     document.getElementById("imdbID").innerHTML = imdbID
+                     document.getElementById("imdbRating").innerHTML = imdbRating
+                     document.getElementById("imdbVotes").innerHTML = imdbVotes
+                     document.getElementById("minhaImagem").src = Poster
+
+
+                     // Get the root element
+                     var r = document.querySelector(':root');
+                     // Set the value of variable --blue to another value (in this case "lightblue")
+                     if (imdbRating <= 4.9) {
+                            r.style.setProperty('--gray2', 'orange');
+                     } else if (5 < imdbRating <= 6.9) {
+                            r.style.setProperty('--gray2', 'orange');
+                            r.style.setProperty('--gray3', 'orange');
+                     } else if (7 < imdbRating <= 8.9) {
+                            r.style.setProperty('--gray2', 'orange');
+                            r.style.setProperty('--gray3', 'orange');
+                            r.style.setProperty('--gray4', 'orange');
+                     } else if (9 < imdbRating <= 10) {
+                            r.style.setProperty('--gray2', 'orange');
+                            r.style.setProperty('--gray3', 'orange');
+                            r.style.setProperty('--gray4', 'orange');
+                            r.style.setProperty('--gray5', 'orange');
+                     }
+
+              });
+       </script>
+</body>
+
+</html>
