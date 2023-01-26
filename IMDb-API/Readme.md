@@ -1,4 +1,5 @@
 # Código para colocação de um frame com a imagem/classificação no IMDb de um filme
+# Usado em uma página Wordpress com Elementor
 # a sintaxe para a utilização é a seguinte:
 #    No IMDb exemplo: https://www.imdb.com/title/tt3581920/?ref_=ls_mv_desc
 #    o id do filme é tt3581920
